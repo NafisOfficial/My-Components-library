@@ -1,4 +1,5 @@
 "use client";
+import Button from '@/app/components/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -8,7 +9,6 @@ import { FaCircleUser, FaHandshakeSimple } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { BsBank, BsGraphUpArrow } from "react-icons/bs";
 import { BiSolidContact } from "react-icons/bi";
-import Button from './Button';
 
 
 type NavbarProps = {
@@ -63,12 +63,7 @@ const Navbar = ({
     className = "",
 }: NavbarProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
-    const [userData, setUserData] = useState<UserData | null>({
-        id: '1',
-        email: 'abc@gamil.com',
-        first_name: 'John',
-        last_name: 'Doe',
-    });
+    const [userData, setUserData] = useState<UserData | null>(null);
 
 
 
@@ -85,8 +80,8 @@ const Navbar = ({
                     {Links && Links.map((link, idx) => <Link key={idx} href={link.href}>{link.text}</Link>)}
                 </div>
                 <div className='flex gap-5 items-center'>
-                    <Button text='Get Started Free' className='btn-primary' />
-                    {userData ? (<></>) : <Button text='Sign in' className='btn-primary hidden lg:flex' />}
+                    {userData ? (<></>) : <Button text='Sign in' className='button-none hidden lg:flex' />}
+                    <Button text='Get Started Free' className='button-primary' />
                 </div>
             </nav>
             {/* navbar for mobile */}
@@ -110,17 +105,15 @@ const Navbar = ({
                         {/* Mobile Navigation Links */}
                         <nav className="grow p-4">
                             <div className="flex flex-col space-y-2">
-                            {Links && Links.map((link, idx) => <div className={`flex items-center gap-5 py-2 px-5 rounded-lg ${link.href === "#home"? "bg-black text-white" : ""}`} key={idx}>{link.icon && <span>{link.icon}</span>}<Link href={link.href}>{link.text}</Link></div>)}
+                            {Links && Links.map((link, idx) => <div className={`flex items-center gap-5 py-2 px-5 rounded-lg ${link.href === "#home"? "button-primary" : ""}`} key={idx}>{link.icon && <span>{link.icon}</span>}<Link href={link.href}>{link.text}</Link></div>)}
                             </div>
                         </nav>
                         {/* Mobile Footer */}
                         <div className="p-4 border-t border-gray-200 flex justify-between items-center">
-                            <Link href="#" className="rounded-full shadow-sm">
-                                {userData && (
-                                    <FaCircleUser title={userData?.first_name} className="h-10 w-10" />
-                                )}
-                            </Link>
-                            <Button text='Log out' className='btn-primary w-full ' />
+                            {userData ? <><Link href="#" className="rounded-full shadow-sm">
+                                <FaCircleUser title={userData?.first_name} className="h-10 w-10" />   
+                            </Link> 
+                            <Button text='Log out' className='button-primary w-full ' /></> : <><Button text='Log in' className='button-primary w-full ' /> <Button text='Sign up' className='button-primary w-full ' /></>}
                         </div>
                     </div>
                 </div>
