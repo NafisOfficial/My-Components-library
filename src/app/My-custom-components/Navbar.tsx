@@ -66,8 +66,6 @@ const Navbar = ({
     const [userData, setUserData] = useState<UserData | null>(null);
 
 
-
-
     return (
         <>
             {/* nav for desktop  */}
