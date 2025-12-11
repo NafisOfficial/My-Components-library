@@ -49,8 +49,12 @@ const ProfileInfo = () => {
                 {/* image  */}
                 <div className='flex w-full items-center gap-3'>
                     {<Image src={preview || "/images/img2.jpg"} alt="preview" width={100} height={100} className="object-center object-cover rounded-full h-20 w-20" />}
-                    <div><button onClick={handleImageButton} className='py-2 px-3 border border-[#0000001A] outline-[#0000001A] flex items-center gap-2 rounded-full cursor-pointer'><MdOutlineFileUpload /> <span>Upload Photo</span></button></div>
-                    <button onClick={()=>setPreview(null)}  className='py-2 px-3 border border-[#0000001A] outline-[#0000001A] rounded-full cursor-pointer'>Remove</button>
+                    <div><button type='button' onClick={handleImageButton} className='py-2 px-3 border border-[#0000001A] outline-[#0000001A] flex items-center gap-2 rounded-full cursor-pointer'><MdOutlineFileUpload /> <span>Upload Photo</span></button></div>
+                    {preview && <button onClick={(e)=>{
+                        e.preventDefault();
+                        setPreview(null);
+                    }}
+                    type='button'  className='py-2 px-3 border border-[#0000001A] outline-[#0000001A] rounded-full cursor-pointer'>Remove</button>}
                     <input ref={inputRef} type="file" accept='image/*' className='hidden' alt="image" onChange={handleImage} />
                 </div>
             </form>
