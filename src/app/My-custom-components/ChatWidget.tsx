@@ -59,7 +59,7 @@ const ChatWidget = () => {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className='button-primary fixed bottom-3 right-3 lg:bottom-5 lg:right-5 p-3 lg:p-5 rounded-full'
+                className='button-primary fixed bottom-3 right-3 lg:bottom-5 lg:right-5 p-3 lg:p-4 rounded-full'
                 title='chat'
             >
                 <Sparkles className='lg:w-8 lg:h-8 text-white' />
